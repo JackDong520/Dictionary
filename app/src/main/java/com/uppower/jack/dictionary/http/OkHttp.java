@@ -1,5 +1,8 @@
 package com.uppower.jack.dictionary.http;
 
+import com.google.gson.Gson;
+import com.uppower.jack.dictionary.javabeans.WordsEntity;
+
 import org.junit.Test;
 
 import java.io.IOException;
@@ -38,7 +41,7 @@ public class OkHttp {
 
     public String sendPostRequest(String url, String word) throws IOException {
 
-        FormBody body = new FormBody.Builder().add("word", "take").build();
+        FormBody body = new FormBody.Builder().add("word", word).build();
 
         Request request = new Request.Builder().url(url).post(body).build();
         Response response = client.newCall(request).execute();
@@ -49,7 +52,8 @@ public class OkHttp {
     public void test() {
         String url = "http://localhost:8080/getWord";
         try {
-            System.out.println(new OkHttp().sendPostRequest(url,"take"));
+            WordsEntity wordsEntity = new Gson().fromJson(new OkHttp().sendPostRequest(url,"take") ,WordsEntity.class) ;
+            System.out.println(wordsEntity.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,9 +1,22 @@
 package com.uppower.jack.dictionary.javabeans;
 
+import java.io.Serializable;
+
 /**
  * Created by 72408 on 2017/5/16.
  */
-public class WordsEntity {
+public class WordsEntity implements Serializable {
+    @Override
+    public String toString() {
+        return "WordsEntity{" +
+                "id=" + id +
+                ", word='" + word + '\'' +
+                ", exchange='" + exchange + '\'' +
+                ", voice='" + voice + '\'' +
+                ", times=" + times +
+                '}';
+    }
+
     private int id;
     private String word;
     private String exchange;
