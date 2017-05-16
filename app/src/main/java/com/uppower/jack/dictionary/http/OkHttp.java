@@ -47,9 +47,9 @@ public class OkHttp {
 
     @Test
     public void test() {
-        String url = "http://localhost:8080/";
+        String url = "http://localhost:8080/getWord";
         try {
-            System.out.println(new OkHttp().sendGetRequest(url, null, null));
+            System.out.println(new OkHttp().sendPostRequest(url,"take"));
         } catch (IOException e) {
             e.printStackTrace();
         }
