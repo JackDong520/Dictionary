@@ -29,8 +29,9 @@ public class WordSearchActivity extends AppCompatActivity {
     private Button searchButton;
     private EditText searchEdit;
     private Handler myHandler;
-    private String url = "http://192.168.6.141:8080/getWord"; //接受服务的restful接口
+    private String url = "http://139.159.213.150:8080/getWord"; //接受服务的restful接口
     private TextView textView;
+    private TextView textView_third;
     private Gson gson;
 
     @Override
@@ -47,7 +48,7 @@ public class WordSearchActivity extends AppCompatActivity {
                     case 200:
                         WordsEntity wordsEntity = (WordsEntity) msg.getData().get("word");
                         System.out.println(wordsEntity.toString());
-                        textView.setText(wordsEntity.getWord().toString());
+                        textView.setText(wordsEntity.toString());
                         break;
                     default:
                         break;
@@ -95,5 +96,6 @@ public class WordSearchActivity extends AppCompatActivity {
         searchButton = (Button) findViewById(R.id.search_button);
         searchEdit = (EditText) findViewById(R.id.search_edit);
         textView = (TextView) findViewById(R.id.textView);
+
     }
 }
