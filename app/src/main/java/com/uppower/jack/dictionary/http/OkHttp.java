@@ -1,7 +1,8 @@
 package com.uppower.jack.dictionary.http;
 
 import com.google.gson.Gson;
-import com.uppower.jack.dictionary.javabeans.WordsEntity;
+import com.uppower.jack.dictionary.javabeans.DictEntity;
+import com.uppower.jack.dictionary.javabeans.UserEntity;
 
 import org.junit.Test;
 
@@ -39,7 +40,7 @@ public class OkHttp {
         }
     }
 
-    public String sendPostRequest(String url, String word) throws IOException {
+    public String sendWordPostRequest(String url, String word) throws IOException {
 
         FormBody body = new FormBody.Builder().add("word", word).build();
 
@@ -47,17 +48,39 @@ public class OkHttp {
         Response response = client.newCall(request).execute();
         return response.body().string();
     }
+    public String registerRequest(String url , UserEntity userEntity) throws IOException {
+        FormBody body = new FormBody.Builder().add("user", userEntity.getUser()).
+                add("pwd",userEntity.getPwd()).build();
+
+        Request request = new Request.Builder().url(url).post(body).build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+    public String loginRequest(String url , UserEntity userEntity) throws IOException {
+        FormBody body = new FormBody.Builder().add("user", userEntity.getUser()).
+                add("pwd",userEntity.getPwd()).build();
+
+        Request request = new Request.Builder().url(url).post(body).build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+
+
 
     @Test
-    public void test() {
-        String url = "http://localhost:8080/getWord";
-        try {
-            WordsEntity wordsEntity = new Gson().fromJson(new OkHttp().sendPostRequest(url,"take") ,WordsEntity.class) ;
-            System.out.println(wordsEntity.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void test() throws IOException {
+        String url = "http://192.168.1.109:8080/login";
+//        try {
+//            DictEntity dictEntity = new Gson().fromJson(new OkHttp().sendWordPostRequest(url,"take") ,DictEntity.class) ;
+//
+//            System.out.println(dictEntity.getMeaning());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        System.out.println(loginRequest(url , new UserEntity(0 , "jackdong123" , "232")));
+
     }
+
 
 }
 

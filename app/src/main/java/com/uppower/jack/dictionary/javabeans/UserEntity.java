@@ -1,11 +1,21 @@
 package com.uppower.jack.dictionary.javabeans;
 
 /**
- * Created by 72408 on 2017/5/16.
+ * Created by 72408 on 2017/6/8.
  */
 public class UserEntity {
     private int id;
-    private String password;
+    private String user;
+    private String pwd;
+
+    public UserEntity(int id, String user, String pwd) {
+        this.id = id;
+        this.user = user;
+        this.pwd = pwd;
+    }
+
+    public UserEntity() {
+    }
 
     public int getId() {
         return id;
@@ -15,12 +25,20 @@ public class UserEntity {
         this.id = id;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUser() {
+        return user;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
     @Override
@@ -31,7 +49,8 @@ public class UserEntity {
         UserEntity that = (UserEntity) o;
 
         if (id != that.id) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
+        if (user != null ? !user.equals(that.user) : that.user != null) return false;
+        if (pwd != null ? !pwd.equals(that.pwd) : that.pwd != null) return false;
 
         return true;
     }
@@ -39,7 +58,8 @@ public class UserEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (pwd != null ? pwd.hashCode() : 0);
         return result;
     }
 }
